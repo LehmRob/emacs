@@ -4,7 +4,7 @@
 			   (c-basic-offset . 2)
 			   (c-set-offset 'substatement-open '0)
 			   (c-set-offset 'case-label '+)
-			   (c-set-offset 'innamespace '0)))
+			   (c-offsets-alist . ((innamespace . [0])))))
 
 (defun my-cpp-mode-hook()
   (c-set-style "lehmrob-style")

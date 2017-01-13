@@ -9,12 +9,12 @@
 (pending-delete-mode t)
 (display-time-mode 1)
 (set-default 'indicate-empty-lines t)
-;; Set tabs width
 (setq-default default-tab-width 4)
 (setq indent-line-function 'insert-tab)
 (setq-default display-time-24hr-format t)
 ;; i want a mouse yank to be inserted where the point is, not where i click
 (setq-default mouse-yank-at-point t)
+(when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
 (defvar whitespace-cleanup-on-save t)
 
 ;; Add melpa repository

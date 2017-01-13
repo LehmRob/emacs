@@ -1,6 +1,6 @@
 (defun my-go-mode-hook ()
   ; Use goimports instead of go-fmt
-  (setq gofmt-command "goimports")
+  (setq gofmt-command "/home/rd7/work/go/bin/goimports")
   ; Call Gofmt before saving
   (add-hook 'before-save-hook 'gofmt-before-save)
   ; Customize compile command to run go build
