@@ -4,8 +4,10 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 var (
@@ -149,12 +151,70 @@ func install() error {
 	return nil
 }
 
+func grepElFiles() ([]string, error) {
+	var elFiles []string
+
+	err := filepath.Walk(emacsDir, func(p string, i os.FileInfo, e error) error {
+		if strings.Contains(i.Name(), ".el") {
+			elFiles = append(elFiles, i.Name())
+		}
+		return nil
+	})
+
+	return elFiles, err
+}
+
+func updateFiles(files []string) error {
+	curDir, err := os.Getwd()
+	if err != nil {
+		return err
+	}
+
+	for _, file := range files {
+		src := filepath.Join(emacsDir, file)
+		dest := filepath.Join(curDir, "emacs.d/lehmrob", file)
+		err = copyFile(src, dest)
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
+func update() error {
+	elFiles, err := grepElFiles()
+	if err != nil {
+		return nil
+	}
+
+	for _, f := range elFiles {
+		fmt.Println(f)
+	}
+
+	err = updateFiles(elFiles)
+	if err != nil {
+
+	}
+
+	return nil
+}
+
 func main() {
+	if len(os.Args) <= 1 {
+		log.Fatal("Not enough arguments")
+	}
+
 	switch os.Args[1] {
 	case "install":
 		err := install()
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Can't install emacs files:%s\n", err.Error())
+		}
+	case "update":
+		err := update()
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Can't update dotfiles:%s\n", err.Error())
 		}
 	}
 }
