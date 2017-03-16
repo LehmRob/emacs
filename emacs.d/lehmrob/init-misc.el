@@ -8,7 +8,7 @@
 (setq transient-mark-mode t)
 (pending-delete-mode t)
 (display-time-mode 1)
-(emacs-lock-mode)
+;; (emacs-lock-mode)
 (column-number-mode)
 (set-default 'indicate-empty-lines t)
 (setq-default default-tab-width 4)
