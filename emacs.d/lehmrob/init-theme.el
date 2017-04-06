@@ -1,8 +1,8 @@
 ;; Init for the theme
-(maybe-require-package 'basic-theme)
 (when (display-graphic-p)
   (progn
-	(load-theme 'basic t))
+	(maybe-require-package 'minimal-theme)
+	(load-theme 'minimal-light t))
   (progn
 	(custom-set-variables '(frame-background-mode 'light))))
 (provide 'init-theme)
