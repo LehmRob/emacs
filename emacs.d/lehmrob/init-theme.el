@@ -4,5 +4,5 @@
 	(maybe-require-package 'minimal-theme)
 	(load-theme 'minimal-light t))
   (progn
-	(custom-set-variables '(frame-background-mode 'light))))
+  	(custom-set-variables '(frame-background-mode 'automatic))))
 (provide 'init-theme)
