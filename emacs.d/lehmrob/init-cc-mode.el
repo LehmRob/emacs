@@ -13,4 +13,9 @@
 
 (add-hook 'c++-mode-hook 'my-cpp-mode-hook)
 
+(require 'clang-format)
+(global-set-key (kbd "C-c i") 'clang-format-region)
+(global-set-key (kbd "C-c u") 'clang-format-buffer)
+
+
 (provide 'init-cc-mode)
